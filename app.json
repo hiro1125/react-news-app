@@ -1,5 +1,6 @@
 {
   "expo": {
+    "jsEngine": "jsc",
     "name": "react-news-app",
     "slug": "react-news-app",
     "version": "1.0.0",
