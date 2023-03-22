@@ -1,17 +1,23 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 
-export const ListItem = () => {
+type Props = {
+  imageUrl: string;
+  title: string;
+  author: string;
+};
 
-  const sampleText = "text text text text text text text text text text text text text text text text"
+export const ListItem = ({ imageUrl, title, author }: Props) => {
 
   return (
       <View style={styles.itemContainer}>
       <View style={styles.leftContainer}>
-        <Image style={{width: 100, height: 100}} source={{uri: "https://picsum.photos/id/10/300/300"}} />
+        <Image
+        style={{width: 100, height: 100}}
+        source={{uri:imageUrl}} />
       </View>
       <View style={styles.rightContainer} >
-        <Text numberOfLines={3} style={styles.text}>{sampleText}</Text>
-        <Text style={styles.subText}>ReactNews</Text>
+        <Text numberOfLines={3} style={styles.text}>{title}</Text>
+        <Text style={styles.subText}>{author}</Text>
       </View>
       </View>
   );

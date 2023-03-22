@@ -7,10 +7,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ListItem/>
-      <ListItem/>
-      <ListItem/>
-      <ListItem/>
+      <ListItem
+      imageUrl={"https://picsum.photos/id/10/300/300"}
+      title="text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text"
+      author='React News' />
       <StatusBar style="auto" />
     </View>
   );
