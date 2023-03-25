@@ -1,28 +1,15 @@
-import { StatusBar } from "expo-status-bar";
-import { FlatList, SafeAreaView, StyleSheet } from "react-native";
-import { ListItem } from "./components/ListItem";
-import articles from "./dummies/articles.json";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { HomeScreen } from "./screens/HomeScreen";
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList data={articles} renderItem={({item}) => (
-          <ListItem
-          imageUrl={item.urlToImage}
-          title={item.title}
-          author={item.author}
-        />
-        )}
-      keyExtractor={(item, key)=>key.toString()}
-      />
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#eee",
-  },
-});
