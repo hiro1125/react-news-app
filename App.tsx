@@ -1,23 +1,20 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet } from "react-native";
 import { ListItem } from "./components/ListItem";
 import articles from "./dummies/articles.json";
 
 export default function App() {
-  const items = articles.map((article, key) => {
-    return (
-      <ListItem
-        imageUrl={article.urlToImage}
-        title={article.title}
-        author={article.author}
-        key={key.toString()}
-      />
-    );
-  });
-
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>{items}</ScrollView>
+      <FlatList data={articles} renderItem={({item}) => (
+          <ListItem
+          imageUrl={item.urlToImage}
+          title={item.title}
+          author={item.author}
+        />
+        )}
+      keyExtractor={(item, key)=>key.toString()}
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
