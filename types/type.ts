@@ -4,3 +4,8 @@ export type Article = {
   url: string;
   urlToImage: string;
 };
+
+export type RootStackParamList = {
+  homeScreen: undefined;
+  Article: undefined;
+};
