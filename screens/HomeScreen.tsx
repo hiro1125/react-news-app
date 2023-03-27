@@ -3,12 +3,17 @@ import { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet } from "react-native";
 import { ListItem } from "../components/ListItem";
 import axios from "axios";
-import { Article } from "../types/type";
+import { Article, RootStackParamList } from "../types/type";
 import { apiKey } from "../env";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const URL = `https://newsapi.org/v2/everything?q=apple&from=2023-03-24&to=2023-03-24&sortBy=popularity&apiKey=${apiKey}` ;
 
-export const HomeScreen =() => {
+type Props = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'homeScreen'>;
+};
+
+export const HomeScreen =({navigation}:Props) => {
   const [articles,setArticles] = useState([]);
 
   const fetchArticles = async () => {
@@ -31,6 +36,7 @@ export const HomeScreen =() => {
           imageUrl={item.urlToImage}
           title={item.title}
           author={item.author}
+          onPress={()=>navigation.navigate("Article")}
         />
         )}
       keyExtractor={(item, key)=>key.toString()}

@@ -1,15 +1,16 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { GestureResponderEvent, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type Props = {
   imageUrl: string;
   title: string;
   author: string;
+  onPress: (e: GestureResponderEvent) => void;
 };
 
-export const ListItem = ({ imageUrl, title, author }: Props) => {
+export const ListItem = ({ imageUrl, title, author, onPress }: Props) => {
 
   return (
-      <View style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
       <View style={styles.leftContainer}>
         <Image
         style={{width: 100, height: 100}}
@@ -19,7 +20,7 @@ export const ListItem = ({ imageUrl, title, author }: Props) => {
         <Text numberOfLines={3} style={styles.text}>{title}</Text>
         <Text style={styles.subText}>{author}</Text>
       </View>
-      </View>
+      </TouchableOpacity>
   );
 }
 
