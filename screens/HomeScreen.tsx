@@ -10,7 +10,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 const URL = `https://newsapi.org/v2/everything?q=apple&from=2023-03-24&to=2023-03-24&sortBy=popularity&apiKey=${apiKey}` ;
 
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'homeScreen'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
 };
 
 export const HomeScreen =({navigation}:Props) => {
@@ -36,7 +36,7 @@ export const HomeScreen =({navigation}:Props) => {
           imageUrl={item.urlToImage}
           title={item.title}
           author={item.author}
-          onPress={()=>navigation.navigate("Article")}
+          onPress={()=>navigation.navigate("Article",{article: item})}
         />
         )}
       keyExtractor={(item, key)=>key.toString()}

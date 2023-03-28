@@ -1,9 +1,18 @@
-import { SafeAreaView, StyleSheet, Text } from "react-native"
+import { RouteProp } from "@react-navigation/native";
+import { SafeAreaView, StyleSheet } from "react-native"
+import { RootStackParamList } from "../types/type";
+import {WebView} from "react-native-webview";
 
-export const ArticleScreen = () => {
+
+type Props = {
+  route: RouteProp<RootStackParamList,"Article">
+}
+
+export const ArticleScreen = ({route}: Props) => {
+  const {article} = route.params;
   return(
     <SafeAreaView style={styles.container}>
-      <Text>ArticleScreen</Text>
+      <WebView source={{uri: article.url}} />
     </SafeAreaView>
   )
 };
