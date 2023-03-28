@@ -1,9 +1,11 @@
+import 'expo-dev-menu';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ArticleScreen } from "./components/ArticleScreen";
 import { HomeScreen } from "./screens/HomeScreen";
+import { RootStackParamList } from "./types/type";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
   return (
