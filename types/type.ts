@@ -6,6 +6,6 @@ export type Article = {
 };
 
 export type RootStackParamList = {
-  homeScreen: undefined;
-  Article: undefined;
+  Home: undefined;
+  Article: {article: Article};
 };
