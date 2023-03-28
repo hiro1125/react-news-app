@@ -1,7 +1,7 @@
 import 'expo-dev-menu';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ArticleScreen } from "./components/ArticleScreen";
+import { ArticleScreen } from "./screens/ArticleScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { RootStackParamList } from "./types/type";
 
