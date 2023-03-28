@@ -1,10 +1,10 @@
-import { GestureResponderEvent, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type Props = {
   imageUrl: string;
   title: string;
   author: string;
-  onPress: (e: GestureResponderEvent) => void;
+  onPress: () => void;
 };
 
 export const ListItem = ({ imageUrl, title, author, onPress }: Props) => {
