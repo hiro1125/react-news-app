@@ -8,4 +8,6 @@ export type Article = {
 export type RootStackParamList = {
   Home: undefined;
   Article: {article: Article};
+  HomeTab: undefined;
+  ClipTab: undefined;
 };
