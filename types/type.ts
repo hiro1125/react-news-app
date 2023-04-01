@@ -10,4 +10,5 @@ export type RootStackParamList = {
   Article: {article: Article};
   HomeTab: undefined;
   ClipTab: undefined;
+  Clip: undefined;
 };
