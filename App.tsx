@@ -1,5 +1,5 @@
 import "expo-dev-menu";
-import {NavigationContainer, RouteProp} from "@react-navigation/native";
+import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {ArticleScreen} from "./screens/ArticleScreen";
 import {HomeScreen} from "./screens/HomeScreen";
@@ -10,6 +10,8 @@ import {
 } from "@react-navigation/bottom-tabs";
 import {ClipScreen} from "./screens/ClipScreen";
 import {FontAwesome} from "@expo/vector-icons";
+import {store} from "./store";
+import {Provider} from "react-redux";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,19 +46,21 @@ const HomeStack = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={screenOption}>
-        <Tab.Screen
-          name="HomeTab"
-          component={HomeStack}
-          options={{headerShown: false, title: "Home"}}
-        />
-        <Tab.Screen
-          name="ClipTab"
-          component={ClipScreen}
-          options={{headerShown: false, title: "Clip"}}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator screenOptions={screenOption}>
+          <Tab.Screen
+            name="HomeTab"
+            component={HomeStack}
+            options={{headerShown: false, title: "Home"}}
+          />
+          <Tab.Screen
+            name="ClipTab"
+            component={ClipScreen}
+            options={{headerShown: false, title: "Clip"}}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
