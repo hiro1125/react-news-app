@@ -21,7 +21,7 @@ export const userSlice = createSlice({
       const deletingClip = action.payload;
       const currentClips = state.clips;
       const filteredClip = currentClips.filter(
-        (clip: any) => clip.url! == deletingClip.url,
+        (clip: any) => clip.url !== deletingClip.url,
       );
       state.clips = filteredClip;
     },
