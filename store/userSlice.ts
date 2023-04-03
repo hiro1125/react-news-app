@@ -1,14 +1,11 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
+import {UserStateProps} from "../types/type";
 
-type Clip = {
-  url: string;
+type InitialState = {
+  clips: UserStateProps[];
 };
 
-type UserState = {
-  clips: Clip[];
-};
-
-const initialState: UserState = {
+const initialState: InitialState = {
   clips: [],
 };
 
@@ -16,20 +13,22 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addClip: (state, action: PayloadAction<Clip>) => {
+    addClip: (state, action) => {
       const newClip = action.payload;
       state.clips.push(newClip);
     },
-    deleteClip: (state, action: PayloadAction<Clip>) => {
+    deleteClip: (state, action) => {
       const deletingClip = action.payload;
       const currentClips = state.clips;
-      const filteredClips = currentClips.filter(
-        (clip) => clip.url! == deletingClip.url,
+      const filteredClip = currentClips.filter(
+        (clip: any) => clip.url! == deletingClip.url,
       );
-      state.clips = filteredClips;
+      state.clips = filteredClip;
     },
   },
 });
 
+// Action creators are generated for each case reducer function
 export const {addClip, deleteClip} = userSlice.actions;
+
 export default userSlice.reducer;

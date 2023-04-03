@@ -1,20 +1,20 @@
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {StyleSheet, SafeAreaView, FlatList} from "react-native";
-import {useSelector} from "react-redux";
 import {ListItem} from "../components/ListItem";
-import {RootStackParamList} from "../types/type";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {RootStackParamList, UserStateProps} from "../types/type";
+import {useRootSelector} from "../store";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Clip">;
 };
 
 export const ClipScreen = ({navigation}: Props) => {
-  const clips = useSelector((state: any) => state.user.clips);
+  const clips = useRootSelector((state) => state.users.clips);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={clips}
-        renderItem={({item}) => (
+        renderItem={({item}: {item: UserStateProps}) => (
           <ListItem
             imageUrl={item.urlToImage}
             title={item.title}
@@ -31,7 +31,6 @@ export const ClipScreen = ({navigation}: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "flex-start",
+    backgroundColor: "#eee",
   },
 });

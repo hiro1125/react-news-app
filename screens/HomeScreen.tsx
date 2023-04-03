@@ -1,45 +1,47 @@
-import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet } from "react-native";
-import { ListItem } from "../components/ListItem";
+import {StatusBar} from "expo-status-bar";
+import {useEffect, useState} from "react";
+import {FlatList, SafeAreaView, StyleSheet} from "react-native";
+import {ListItem} from "../components/ListItem";
 import axios from "axios";
-import { Article, RootStackParamList } from "../types/type";
-import { apiKey } from "../env";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {RootStackParamList, UserStateProps} from "../types/type";
+import {apiKey} from "../env";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 
-const URL = `https://newsapi.org/v2/everything?q=apple&from=2023-03-24&to=2023-03-24&sortBy=popularity&apiKey=${apiKey}` ;
+const URL = `https://newsapi.org/v2/everything?q=apple&from=2023-03-24&to=2023-03-24&sortBy=popularity&apiKey=${apiKey}`;
 
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, "Home">;
 };
 
-export const HomeScreen =({navigation}:Props) => {
-  const [articles,setArticles] = useState([]);
+export const HomeScreen = ({navigation}: Props) => {
+  const [articles, setArticles] = useState([]);
 
   const fetchArticles = async () => {
     try {
       const response = await axios.get(URL);
       setArticles(response.data.articles);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 
-  useEffect(()=> {
-    fetchArticles()
-  },[])
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList data={articles} renderItem={({item}: {item: Article}) => (
+      <FlatList
+        data={articles}
+        renderItem={({item}: {item: UserStateProps}) => (
           <ListItem
-          imageUrl={item.urlToImage}
-          title={item.title}
-          author={item.author}
-          onPress={()=>navigation.navigate("Article",{article: item})}
-        />
+            imageUrl={item.urlToImage}
+            title={item.title}
+            author={item.author}
+            onPress={() => navigation.navigate("Article", {article: item})}
+          />
         )}
-      keyExtractor={(item, key)=>key.toString()}
+        keyExtractor={(item, key) => key.toString()}
       />
       <StatusBar style="auto" />
     </SafeAreaView>
